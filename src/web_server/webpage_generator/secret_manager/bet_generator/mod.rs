@@ -11,8 +11,8 @@ fn generate_bet_type() -> BetType {
     }
 }
 
-const EARLIEST_DATE: Date = Date(); // TODO
-const LATEST_DATE: Date = Date(); // TODO
+const EARLIEST_DATE: Date = Date::from_year_month_day(2024, 3, 1); // TODO refine day
+const LATEST_DATE: Date = Date::from_year_month_day(2024, 9, 1); // TODO refine day
 
 fn generate_bet_date() -> Date {
     let Days(min) = EARLIEST_DATE - EARLIEST_DATE;

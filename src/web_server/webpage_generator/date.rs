@@ -5,6 +5,10 @@ pub struct Date();
 pub struct Days(pub i32);
 
 impl Date {
+    pub const fn from_year_month_day(year: u32, month: u32, day: u32) -> Self {
+        Date() // TODO
+    }
+
     /// Returns `true` iff the date represents a day in the future.
     pub fn is_future(&self) -> bool {
         true
