@@ -16,6 +16,7 @@ name = "coffeer"
 version = "0.1.0"
 dependencies = [
  "date_time",
+ "rand_simple",
 ]
 
 [[package]]
@@ -39,6 +40,12 @@ name = "memchr"
 version = "2.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f665ee40bc4a3c5590afb1e9677db74a508659dfd71e126420da8274909a0167"
+
+[[package]]
+name = "rand_simple"
+version = "0.2.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8639e91c96b5d21d3669f780df764fbb144f6b01a552fbd99c682d4b43ac0c17"
 
 [[package]]
 name = "regex"

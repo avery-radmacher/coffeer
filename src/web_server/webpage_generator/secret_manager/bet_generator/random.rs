@@ -1,5 +1,17 @@
+use rand_simple;
+
 fn uniform(range: u32) -> u32 {
-    todo!()
+    let seed = rand_simple::generate_seeds!(1)[0]; // TODO static generator?
+    let mut distribution = rand_simple::Uniform::new(seed);
+    distribution
+        .try_set_params(0.0, range as f64)
+        .expect("Error setting distribution parameters");
+    let sample = distribution.sample().trunc() as u32;
+    if sample == range {
+        0
+    } else {
+        sample
+    }
 }
 
 pub fn uniform_bool() -> bool {
@@ -10,7 +22,9 @@ const normal_z: f64 = 1.0; // TODO verify (and elide?)
 
 /// Returns a random number sampled from the normal distribution.
 fn normal() -> f64 {
-    todo!()
+    let seed = rand_simple::generate_seeds!(2); // TODO static generator?
+    let mut distribution = rand_simple::Normal::new(seed);
+    distribution.sample()
 }
 
 /// Generates a random number between `min` (inclusive) and `max` (inclusive). The relative likelihood of numbers within
