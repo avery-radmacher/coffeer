@@ -2,5 +2,7 @@ mod date;
 mod web_server;
 
 fn main() {
-    println!("Hello, world!");
+    if let Err(msg) = web_server::run() {
+        eprintln!("Error: {}", msg);
+    }
 }
