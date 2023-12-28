@@ -1,7 +1,7 @@
 use super::date::Date;
 
+mod bet_generator;
 mod io;
-mod secret_generator;
 
 pub enum BetType {
     /// Josh wins if the balance is over the bet amount; Avery wins if the balance is below the bet amount.
@@ -24,10 +24,8 @@ pub fn get_or_create_bet() -> Bet {
     if let Some(secret) = io::try_get_secret() {
         secret
     } else {
-        Bet {
-            bet_amount: 17500,                     // $175 (TODO check this is correct)
-            bet_type: BetType::AveryOverJoshUnder, // TODO should be randomly set to one of two choices
-            date: Date(), // TODO should be psuedo-normally set to a date in a certain time range
-        }
+        let bet = bet_generator::generate_bet();
+        // TODO store bet
+        bet
     }
 }
