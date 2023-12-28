@@ -18,8 +18,6 @@ pub fn uniform_bool() -> bool {
     uniform(2) == 1
 }
 
-const normal_z: f64 = 1.0; // TODO verify (and elide?)
-
 /// Returns a random number sampled from the normal distribution.
 fn normal() -> f64 {
     let seed = rand_simple::generate_seeds!(2); // TODO static generator?
@@ -35,7 +33,7 @@ pub fn psuedo_normal(min: i32, max: i32, z_range: f64) -> i32 {
         panic!("Invalid inputs");
     }
 
-    let scaling = (max - min) as f64 / (z_range * 2.0 * normal_z);
+    let scaling = (max - min) as f64 / (z_range * 2.0);
     let shift = (max + min) as f64 / 2.0;
 
     loop {
