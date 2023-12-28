@@ -5,6 +5,7 @@ pub struct Date();
 pub struct Days(pub i32);
 
 impl Date {
+    // Constructs a `Date` to represent the year-month-day triple. Panics on invalid input.
     pub const fn from_year_month_day(year: u32, month: u32, day: u32) -> Self {
         Date() // TODO
     }
