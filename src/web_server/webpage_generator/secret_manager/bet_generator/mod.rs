@@ -16,8 +16,7 @@ const LATEST_DATE: Date = Date::from_year_month_day(2024, 9, 1); // TODO refine 
 
 fn generate_bet_date() -> Date {
     let Days(min) = EARLIEST_DATE - EARLIEST_DATE;
-    let Days(max_inclusive) = LATEST_DATE - EARLIEST_DATE;
-    let max = max_inclusive + 1;
+    let Days(max) = LATEST_DATE - EARLIEST_DATE;
 
     let days_after_earliest_date = Days(random::psuedo_normal(min, max, 3.0));
 
