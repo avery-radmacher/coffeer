@@ -20,12 +20,11 @@ pub struct Bet {
 }
 
 pub fn get_or_create_bet() -> Bet {
-    // Check whether secret exists
     if let Some(secret) = io::try_get_secret() {
         secret
     } else {
         let bet = bet_generator::generate_bet();
-        // TODO store bet
+        io::store_secret(&bet);
         bet
     }
 }
