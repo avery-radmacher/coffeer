@@ -14,6 +14,17 @@ impl Date {
     pub fn days_since(&self, other: &Self) -> Days {
         todo!()
     }
+
+    pub fn add_days(&self, days: &Days) -> Self {
+        todo!()
+    }
+}
+
+impl std::ops::Add<Days> for Date {
+    type Output = Self;
+    fn add(self, rhs: Days) -> Self::Output {
+        self.add_days(&rhs)
+    }
 }
 
 impl std::ops::Sub for Date {
