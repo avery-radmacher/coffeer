@@ -1,12 +1,10 @@
-use self::random::uniform_bool;
-
 use super::{Bet, BetType};
-use crate::web_server::webpage_generator::date::Date;
+use crate::web_server::webpage_generator::date::{Date, Days};
 
 mod random;
 
 fn generate_bet_type() -> BetType {
-    if uniform_bool() {
+    if random::uniform_bool() {
         BetType::AveryOverJoshUnder
     } else {
         BetType::JoshOverAveryUnder
@@ -18,6 +16,12 @@ const LATEST_DATE: Date = Date(); // TODO
 
 fn generate_bet_date() -> Date {
     // TODO should be psuedo-normally set to a date in a certain time range
+    let Days(min) = EARLIEST_DATE - EARLIEST_DATE;
+    let Days(max_inclusive) = LATEST_DATE - EARLIEST_DATE;
+    let max = max_inclusive + 1;
+
+    let days_after_earliest_date = Days(random::psuedo_normal(min, max, 3.0));
+
     todo!()
 }
 
