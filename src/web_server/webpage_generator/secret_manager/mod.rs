@@ -20,9 +20,14 @@ pub struct Bet {
 }
 
 pub fn get_or_create_bet() -> Bet {
-    Bet {
-        bet_amount: 17500,                     // $175 (TODO check this is correct)
-        bet_type: BetType::AveryOverJoshUnder, // TODO should be randomly set to one of two choices
-        date: Date(), // TODO should be psuedo-normally set to a date in a certain time range
+    // Check whether secret exists
+    if let Some(secret) = io::try_get_secret() {
+        secret
+    } else {
+        Bet {
+            bet_amount: 17500,                     // $175 (TODO check this is correct)
+            bet_type: BetType::AveryOverJoshUnder, // TODO should be randomly set to one of two choices
+            date: Date(), // TODO should be psuedo-normally set to a date in a certain time range
+        }
     }
 }
