@@ -1,5 +1,5 @@
 use super::Bet;
-use std::fs::{File, OpenOptions};
+use std::fs::{self, File, OpenOptions};
 use std::path::PathBuf;
 use std::str::FromStr;
 
@@ -19,10 +19,14 @@ pub fn try_get_secret() -> Option<Bet> {
 }
 
 pub fn store_secret(bet: &Bet) {
+    let path = get_path();
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).expect("Error creating storage directory");
+    }
     let file = OpenOptions::new()
         .write(true)
         .create_new(true)
-        .open(get_path())
+        .open(path)
         .expect("Error creating new file");
 
     serde_json::to_writer_pretty(file, bet).expect("Error writing secret");
