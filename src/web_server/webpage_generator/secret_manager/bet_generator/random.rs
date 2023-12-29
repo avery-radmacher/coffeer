@@ -6,6 +6,10 @@ fn uniform(range: u32) -> u32 {
     distribution
         .try_set_params(0.0, range as f64)
         .expect("Error setting distribution parameters");
+    for _ in 0..100 {
+        // TODO initialize elsewhere
+        distribution.sample();
+    }
     let sample = distribution.sample().trunc() as u32;
     if sample == range {
         0
@@ -22,6 +26,10 @@ pub fn uniform_bool() -> bool {
 fn normal() -> f64 {
     let seed = rand_simple::generate_seeds!(2); // TODO static generator?
     let mut distribution = rand_simple::Normal::new(seed);
+    for _ in 0..100 {
+        // TODO initialize elsewhere
+        distribution.sample();
+    }
     distribution.sample()
 }
 
