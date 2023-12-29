@@ -20,6 +20,7 @@ static mut NORMAL_DISTRIBUTION: Lazy<Normal> = Lazy::new(|| {
 });
 
 fn uniform(range: u32) -> u32 {
+    // TODO make thread-safe
     let sample = (unsafe { UNIFORM_DISTRIBUTION.sample() } * range as f64).trunc() as u32;
     if sample == range {
         0
@@ -34,6 +35,7 @@ pub fn uniform_bool() -> bool {
 
 /// Returns a random number sampled from the normal distribution.
 fn normal() -> f64 {
+    // TODO make thread-safe
     unsafe { NORMAL_DISTRIBUTION.sample() }
 }
 
