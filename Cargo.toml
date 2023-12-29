@@ -6,5 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-date_time = "2.1.1"
+date_time = { version = "2.1.1", features = ["serde_support"] }
 rand_simple = "0.2.22"
+serde = { version = "1.0.193", features = ["derive"] }

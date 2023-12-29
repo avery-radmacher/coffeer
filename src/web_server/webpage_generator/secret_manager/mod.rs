@@ -1,8 +1,10 @@
 use super::date::Date;
+use serde::{Deserialize, Serialize};
 
 mod bet_generator;
 mod io;
 
+#[derive(Serialize, Deserialize)]
 pub enum BetType {
     /// Josh wins if the balance is over the bet amount; Avery wins if the balance is below the bet amount.
     JoshOverAveryUnder,
@@ -10,6 +12,7 @@ pub enum BetType {
     AveryOverJoshUnder,
 }
 
+#[derive(Serialize, Deserialize)]
 pub struct Bet {
     /// The amount (in cents) to compare against the balance.
     pub bet_amount: i32,

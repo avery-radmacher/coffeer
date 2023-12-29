@@ -1,6 +1,9 @@
 use date_time::date_tuple::DateTuple;
+use serde::{Deserialize, Serialize};
 
 /// Represents an entire midnight-to-midnight date (year/month/day). Time zone agnostic.
+
+#[derive(Serialize, Deserialize)]
 pub struct Date(DateTuple);
 
 /// Represents a signed duration of whole days.
