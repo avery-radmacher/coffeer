@@ -1,16 +1,26 @@
-use rand_simple;
+use once_cell::sync::Lazy;
+use rand_simple::{self, Normal, Uniform};
 
-fn uniform(range: u32) -> u32 {
-    let seed = rand_simple::generate_seeds!(1)[0]; // TODO static generator?
-    let mut distribution = rand_simple::Uniform::new(seed);
-    distribution
-        .try_set_params(0.0, range as f64)
-        .expect("Error setting distribution parameters");
-    for _ in 0..100 {
-        // TODO initialize elsewhere
+static SEEDS: Lazy<[u32; 3]> = Lazy::new(|| rand_simple::generate_seeds!(3));
+
+static mut UNIFORM_DISTRIBUTION: Lazy<Uniform> = Lazy::new(|| {
+    let mut distribution = Uniform::new(SEEDS[0]);
+    for _ in 0..1024 {
         distribution.sample();
     }
-    let sample = distribution.sample().trunc() as u32;
+    distribution
+});
+
+static mut NORMAL_DISTRIBUTION: Lazy<Normal> = Lazy::new(|| {
+    let mut distribution = Normal::new([SEEDS[1], SEEDS[2]]);
+    for _ in 0..1024 {
+        distribution.sample();
+    }
+    distribution
+});
+
+fn uniform(range: u32) -> u32 {
+    let sample = (unsafe { UNIFORM_DISTRIBUTION.sample() } * range as f64).trunc() as u32;
     if sample == range {
         0
     } else {
@@ -24,13 +34,7 @@ pub fn uniform_bool() -> bool {
 
 /// Returns a random number sampled from the normal distribution.
 fn normal() -> f64 {
-    let seed = rand_simple::generate_seeds!(2); // TODO static generator?
-    let mut distribution = rand_simple::Normal::new(seed);
-    for _ in 0..100 {
-        // TODO initialize elsewhere
-        distribution.sample();
-    }
-    distribution.sample()
+    unsafe { NORMAL_DISTRIBUTION.sample() }
 }
 
 /// Generates a random number between `min` (inclusive) and `max` (inclusive). The relative likelihood of numbers within
