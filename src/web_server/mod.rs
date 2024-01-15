@@ -1,4 +1,4 @@
-mod webpage_generator;
+pub mod webpage_generator;
 
 pub fn run() -> Result<(), String> {
     let mut request_satisfied = false;
