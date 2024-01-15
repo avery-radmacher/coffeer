@@ -9,6 +9,6 @@ pub fn generate_webpage() -> String {
         "(mock) HTML of divulged secret".to_owned()
     } else {
         // else, print a generic "not ready" webpage
-        "(mock) \"Not Ready\" HTML".to_owned()
+        "The bet has not yet reached maturity.".to_owned()
     }
 }
