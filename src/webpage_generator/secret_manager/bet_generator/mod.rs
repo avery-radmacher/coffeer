@@ -1,5 +1,5 @@
 use super::{Bet, BetType};
-use crate::web_server::webpage_generator::date::{Date, Days};
+use crate::webpage_generator::date::{Date, Days};
 
 mod random;
 

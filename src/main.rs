@@ -1,7 +1,6 @@
 use warp::Filter;
-use web_server::webpage_generator;
 
-mod web_server;
+mod webpage_generator;
 
 // fn main() {
 //     if let Err(msg) = web_server::run() {
