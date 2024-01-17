@@ -10,7 +10,7 @@ async fn main() {
             .or(warp::any().map(|| warp::http::StatusCode::NOT_FOUND)),
     ); // TODO refactor into api calls
 
-    let static_files = warp::fs::dir("./www/static"); // TODO assume requests without file extensions are html requests
+    let static_files = warp::fs::dir("./www/static");
 
     let all_routes = api.or(static_files);
 
