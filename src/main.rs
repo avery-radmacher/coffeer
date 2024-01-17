@@ -4,10 +4,11 @@ mod webpage_generator;
 
 #[tokio::main]
 async fn main() {
-    let api = warp::path("api")
-        .and(warp::path("coffee"))
-        .map(webpage_generator::generate_webpage); // TODO refactor into api calls
-                                                   // TODO handle failures instead of falling back to looking up /api in the filesystem
+    let api = warp::path("api").and(
+        warp::path("coffee")
+            .map(webpage_generator::generate_webpage)
+            .or(warp::any().map(|| warp::http::StatusCode::NOT_FOUND)),
+    ); // TODO refactor into api calls
 
     let static_files = warp::fs::dir("./www/static"); // TODO assume requests without file extensions are html requests
 
