@@ -1,8 +1,20 @@
 <html>
   <head>
-    <title>HTML with warp!</title>
+    <title>Coffee Bet&mdash;Avery Radmacher's Website</title>
+    <script>
+      async function fetchAsync(url) {
+        let response = await fetch(url);
+        let data = await response.text();
+        return data;
+      }
+
+      fetchAsync("/api/coffee").then(
+        (value) => (document.getElementById("bet").innerHTML = value)
+      );
+    </script>
   </head>
   <body>
-    <h1>warp + HTML = &hearts;</h1>
+    <h1>Coffee Bet</h1>
+    <p style="white-space: pre-wrap" id="bet">Loading...</p>
   </body>
 </html>
