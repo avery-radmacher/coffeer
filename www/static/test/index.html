@@ -1,17 +1,7 @@
 <html>
   <head>
     <title>Coffee Bet&mdash;Avery Radmacher's Website</title>
-    <script>
-      async function fetchAsync(url) {
-        let response = await fetch(url);
-        let data = await response.text();
-        return data;
-      }
-
-      fetchAsync("/api/coffee").then(
-        (value) => (document.getElementById("bet").innerHTML = value)
-      );
-    </script>
+    <script type="module" src="/test/script.js"></script>
   </head>
   <body>
     <h1>Coffee Bet</h1>
