@@ -5,9 +5,9 @@ mod random;
 
 fn generate_bet_type() -> BetType {
     if random::uniform_bool() {
-        BetType::AveryOverJoshUnder
+        BetType::OneUnderTwoOver
     } else {
-        BetType::JoshOverAveryUnder
+        BetType::OneOverTwoUnder
     }
 }
 
@@ -32,6 +32,7 @@ fn generate_bet_date() -> Date {
 
 pub fn generate_bet() -> Bet {
     Bet {
+        parties: ("Josh".into(), "Avery".into()),
         bet_amount: 17500, // $175 (TODO check this is correct)
         bet_type: generate_bet_type(),
         date: generate_bet_date(),

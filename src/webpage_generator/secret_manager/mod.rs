@@ -6,14 +6,16 @@ mod io;
 
 #[derive(Serialize, Deserialize)]
 pub enum BetType {
-    /// Josh wins if the balance is over the bet amount; Avery wins if the balance is below the bet amount.
-    JoshOverAveryUnder,
-    /// Avery wins if the balance is over the bet amount; Josh wins if the balance is below the bet amount.
-    AveryOverJoshUnder,
+    /// The first part to the bet wins if the balance is above the bet amount; the second party to the bet wins if the balance is below the bet amount.
+    OneOverTwoUnder,
+    /// The first part to the bet wins if the balance is below the bet amount; the second party to the bet wins if the balance is above the bet amount.
+    OneUnderTwoOver,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct Bet {
+    /// The parties to the bet.
+    pub parties: (String, String),
     /// The amount (in cents) to compare against the balance.
     pub bet_amount: i32,
     /// The type of bet being made.
@@ -35,8 +37,8 @@ impl Bet {
         let amount = format!("The bet amount was {amount_dollars}{amount_cents}.");
 
         let (over_winner, under_winner) = match self.bet_type {
-            BetType::AveryOverJoshUnder => ("Avery", "Josh"),
-            BetType::JoshOverAveryUnder => ("Josh", "Avery"),
+            BetType::OneUnderTwoOver => (&self.parties.1, &self.parties.0),
+            BetType::OneOverTwoUnder => (&self.parties.0, &self.parties.1),
         };
 
         let outcome = format!("{over_winner} wins if the remaining balance is over this amount; {under_winner} wins if the remaining balance is below this amount.");
