@@ -33,7 +33,7 @@ fn generate_bet_date() -> Date {
 pub fn generate_bet() -> Bet {
     Bet {
         parties: ("Josh".into(), "Avery".into()),
-        bet_amount: 17500, // $175 (TODO check this is correct)
+        bet_amount: 5000, // $50
         bet_type: generate_bet_type(),
         date: generate_bet_date(),
     }
