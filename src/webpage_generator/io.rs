@@ -1,4 +1,4 @@
-use super::Bet;
+use crate::webpage_generator::secret_manager::Bet;
 use std::fs::{self, File, OpenOptions};
 use std::path::PathBuf;
 use std::str::FromStr;

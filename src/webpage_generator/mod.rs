@@ -1,4 +1,5 @@
 mod date;
+mod io;
 mod secret_manager;
 
 pub fn generate_webpage() -> String {

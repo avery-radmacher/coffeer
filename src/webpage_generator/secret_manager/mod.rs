@@ -1,8 +1,7 @@
-use super::date::Date;
+use super::{date::Date, io};
 use serde::{Deserialize, Serialize};
 
 mod bet_generator;
-mod io;
 
 #[derive(Serialize, Deserialize)]
 pub enum BetType {
