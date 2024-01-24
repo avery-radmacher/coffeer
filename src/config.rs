@@ -5,6 +5,7 @@ use std::{net::SocketAddr, path::PathBuf};
 
 /// Represents app-level configuration.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct AppConfig {
     /// The socket on which to listen for requests.
     pub listen_on: SocketAddr,

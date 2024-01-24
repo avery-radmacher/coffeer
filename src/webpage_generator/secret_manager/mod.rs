@@ -15,6 +15,7 @@ pub enum BetType {
 }
 
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Bet {
     /// The parties to the bet.
     pub parties: (String, String),
