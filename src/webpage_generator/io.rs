@@ -20,6 +20,7 @@ fn write_json_file<T: Serialize>(path: &PathBuf, value: &T) {
         fs::create_dir_all(parent).expect("Error creating storage directory");
     }
     let file = OpenOptions::new()
+        .create(true)
         .write(true)
         .truncate(true)
         .open(path)
