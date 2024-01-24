@@ -1,5 +1,4 @@
-use serde::de::DeserializeOwned;
-use serde::ser::Serialize;
+use serde::{de::DeserializeOwned, ser::Serialize};
 use std::fs::{self, File, OpenOptions};
 use std::path::PathBuf;
 
