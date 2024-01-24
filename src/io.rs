@@ -29,6 +29,8 @@ fn write_json_file<T: Serialize>(path: &PathBuf, value: &T) {
     serde_json::to_writer_pretty(file, value).expect("Error writing file");
 }
 
+// TODO move type-specific stuff to more specific modules
+
 pub fn try_get_secret() -> Option<Bet> {
     let path = get_path();
     if !path.exists() {
