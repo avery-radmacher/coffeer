@@ -1,6 +1,8 @@
 use super::date::Date;
 use crate::io;
 use serde::{Deserialize, Serialize};
+use std::path::PathBuf;
+use std::str::FromStr;
 
 mod bet_generator;
 
@@ -52,12 +54,29 @@ impl Bet {
     }
 }
 
+fn get_path() -> PathBuf {
+    PathBuf::from_str(".\\data\\bet.json").expect("Error creating path")
+}
+
+fn try_get_secret() -> Option<Bet> {
+    let path = get_path();
+    if !path.exists() {
+        return None;
+    }
+
+    Some(io::read_json_file(&path))
+}
+
+fn store_secret(bet: &Bet) {
+    io::write_json_file(&get_path(), bet)
+}
+
 pub fn get_or_create_bet() -> Bet {
-    if let Some(secret) = io::try_get_secret() {
+    if let Some(secret) = try_get_secret() {
         secret
     } else {
         let bet = bet_generator::generate_bet();
-        io::store_secret(&bet);
+        store_secret(&bet);
         bet
     }
 }
