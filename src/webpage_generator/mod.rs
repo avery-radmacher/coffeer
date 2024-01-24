@@ -1,6 +1,5 @@
 mod date;
-mod io;
-mod secret_manager;
+pub mod secret_manager;
 
 pub fn generate_webpage() -> String {
     // get the secret
