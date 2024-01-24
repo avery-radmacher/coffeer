@@ -12,3 +12,17 @@ pub fn generate_webpage() -> String {
         "The bet has not yet reached maturity.".to_owned()
     }
 }
+
+pub fn generate_webpage_json() -> warp::reply::Json {
+    // get the secret
+    let bet = secret_manager::get_or_create_bet();
+    let bet = if !bet.date.is_future() {
+        // if the secret is ready to be divulged, generate that webpage
+        Some(bet)
+    } else {
+        // else, print a generic "not ready" webpage
+        None
+    };
+
+    warp::reply::json(&bet)
+}
