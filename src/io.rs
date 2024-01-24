@@ -9,13 +9,13 @@ fn get_path() -> PathBuf {
     PathBuf::from_str(".\\data\\bet.json").expect("Error creating path")
 }
 
-fn read_json_file<T: DeserializeOwned>(path: &PathBuf) -> T {
+pub fn read_json_file<T: DeserializeOwned>(path: &PathBuf) -> T {
     let file = File::open(path).expect("Error opening file");
     let item: T = serde_json::from_reader(file).expect("Error reading file");
     item
 }
 
-fn write_json_file<T: Serialize>(path: &PathBuf, value: &T) {
+pub fn write_json_file<T: Serialize>(path: &PathBuf, value: &T) {
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent).expect("Error creating storage directory");
     }
