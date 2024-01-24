@@ -1,5 +1,6 @@
 use warp::Filter;
 
+mod config;
 mod io;
 mod webpage_generator;
 
