@@ -7,9 +7,9 @@ use std::{net::SocketAddr, path::PathBuf};
 #[derive(Serialize, Deserialize)]
 pub struct AppConfig {
     /// The socket on which to listen for requests.
-    listen_on: SocketAddr,
+    pub listen_on: SocketAddr,
     /// The parties to the bet.
-    parties: (String, String),
+    pub parties: (String, String),
 }
 
 pub fn try_get_app_config() -> Option<AppConfig> {

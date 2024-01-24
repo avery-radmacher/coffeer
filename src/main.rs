@@ -6,6 +6,9 @@ mod webpage_generator;
 
 #[tokio::main]
 async fn main() {
+    let app_config =
+        config::try_get_app_config().unwrap_or_else(|| panic!("Could not find app configuration"));
+
     let api = warp::path("api").and(
         warp::path("coffee")
             .map(webpage_generator::generate_webpage)
@@ -16,5 +19,7 @@ async fn main() {
 
     let all_routes = api.or(static_files);
 
-    warp::serve(all_routes).run(([127, 0, 0, 1], 3000)).await;
+    eprintln!("Listening on {}", app_config.listen_on);
+
+    warp::serve(all_routes).run(app_config.listen_on).await;
 }
