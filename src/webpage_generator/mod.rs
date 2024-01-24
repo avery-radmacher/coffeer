@@ -1,7 +1,7 @@
 mod date;
 pub mod secret_manager;
 
-pub fn generate_webpage() -> String {
+pub fn generate_webpage_text() -> String {
     // get the secret
     let bet = secret_manager::get_or_create_bet();
     if !bet.date.is_future() {
@@ -13,7 +13,7 @@ pub fn generate_webpage() -> String {
     }
 }
 
-pub fn generate_webpage_json() -> warp::reply::Json {
+pub fn generate_webpage() -> warp::reply::Json {
     // get the secret
     let bet = secret_manager::get_or_create_bet();
     let bet = if !bet.date.is_future() {
