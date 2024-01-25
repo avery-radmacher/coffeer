@@ -33,10 +33,6 @@ impl Date {
         date.add_days(days.0 as u32);
         Date(date)
     }
-
-    pub fn to_readable_string(&self) -> String {
-        self.0.to_readable_string()
-    }
 }
 
 impl std::ops::Add<Days> for Date {
