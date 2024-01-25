@@ -2,9 +2,14 @@ use warp::{filters::BoxedFilter, Filter, Reply};
 
 mod coffee;
 
-pub fn api() -> BoxedFilter<(impl Reply,)> {
+pub struct ApiConfig {
+    pub party_1: String,
+    pub party_2: String,
+}
+
+pub fn api(config: ApiConfig) -> BoxedFilter<(impl Reply,)> {
     warp::path("api")
-        .and(coffee::coffee().or(util::not_found_404()))
+        .and(coffee::coffee(config.party_1, config.party_2).or(util::not_found_404()))
         .boxed()
 }
 

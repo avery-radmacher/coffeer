@@ -53,11 +53,11 @@ fn store_secret(bet: &Bet) {
     io::write_json_file(&get_path(), bet)
 }
 
-pub fn get_or_create_bet() -> Bet {
+pub fn get_or_create_bet(party_1: String, party_2: String) -> Bet {
     if let Some(secret) = try_get_secret() {
         secret
     } else {
-        let bet = bet_generator::generate_bet();
+        let bet = bet_generator::generate_bet(party_1, party_2);
         store_secret(&bet);
         bet
     }

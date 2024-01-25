@@ -30,9 +30,9 @@ fn generate_bet_date() -> Date {
     earliest_date().add_days(&days_after_earliest_date)
 }
 
-pub fn generate_bet() -> Bet {
+pub fn generate_bet(party_1: String, party_2: String) -> Bet {
     Bet {
-        parties: ("Josh".into(), "Avery".into()),
+        parties: (party_1, party_2),
         bet_amount: 5000, // $50
         bet_type: generate_bet_type(),
         date: generate_bet_date(),
