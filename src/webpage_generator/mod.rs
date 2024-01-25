@@ -2,15 +2,5 @@ mod date;
 pub mod secret_manager;
 
 pub fn generate_webpage() -> warp::reply::Json {
-    // get the secret
-    let bet = secret_manager::get_or_create_bet();
-    let bet = if !bet.date.is_future() {
-        // if the secret is ready to be divulged, generate that webpage
-        Some(bet)
-    } else {
-        // else, print a generic "not ready" webpage
-        None
-    };
-
-    warp::reply::json(&bet)
+    warp::reply::json(&secret_manager::get_or_create_bet().divulge_if_mature())
 }

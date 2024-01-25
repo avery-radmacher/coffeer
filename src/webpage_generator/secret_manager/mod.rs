@@ -26,6 +26,16 @@ pub struct Bet {
     pub date: Date,
 }
 
+impl Bet {
+    pub fn divulge_if_mature(self) -> Option<Self> {
+        if !self.date.is_future() {
+            Some(self)
+        } else {
+            None
+        }
+    }
+}
+
 fn get_path() -> PathBuf {
     PathBuf::from(".\\data\\bet.json")
 }
