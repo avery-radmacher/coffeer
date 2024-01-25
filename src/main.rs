@@ -6,8 +6,7 @@ mod webpage_generator;
 
 #[tokio::main]
 async fn main() {
-    let app_config =
-        config::try_get_app_config().unwrap_or_else(|| panic!("Could not find app configuration"));
+    let app_config = config::try_get_app_config().expect("Could not find app configuration");
 
     let api = warp::path("api").and(
         warp::path("coffee")
