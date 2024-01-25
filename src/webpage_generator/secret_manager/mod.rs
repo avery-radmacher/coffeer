@@ -2,7 +2,6 @@ use super::date::Date;
 use crate::io;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
-use std::str::FromStr;
 
 mod bet_generator;
 
@@ -28,7 +27,7 @@ pub struct Bet {
 }
 
 fn get_path() -> PathBuf {
-    PathBuf::from_str(".\\data\\bet.json").expect("Error creating path")
+    PathBuf::from(".\\data\\bet.json")
 }
 
 fn try_get_secret() -> Option<Bet> {
