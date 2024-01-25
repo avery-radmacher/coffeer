@@ -1,6 +1,6 @@
 use crate::io;
 use serde::{Deserialize, Serialize};
-use std::{net::SocketAddr, path::PathBuf};
+use std::net::SocketAddr;
 
 /// Represents app-level configuration.
 #[derive(Serialize, Deserialize)]
@@ -13,7 +13,7 @@ pub struct AppConfig {
 }
 
 pub fn try_get_app_config() -> Option<AppConfig> {
-    let path = PathBuf::from(".\\data\\config.json");
+    let path = io::storage_directory().join("config.json");
     if !path.exists() {
         return None;
     }

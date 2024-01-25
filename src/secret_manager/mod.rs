@@ -37,7 +37,7 @@ impl Bet {
 }
 
 fn get_path() -> PathBuf {
-    PathBuf::from(".\\data\\bet.json")
+    io::storage_directory().join("bet.json")
 }
 
 fn try_get_secret() -> Option<Bet> {

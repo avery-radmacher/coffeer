@@ -1,6 +1,10 @@
 use serde::{de::DeserializeOwned, ser::Serialize};
 use std::fs::{self, File, OpenOptions};
-use std::path::Path;
+use std::path::{Path, PathBuf};
+
+pub fn storage_directory() -> PathBuf {
+    PathBuf::from(".\\data")
+}
 
 pub fn read_json_file<T: DeserializeOwned>(path: &Path) -> T {
     let file = File::open(path).expect("Error opening file");
