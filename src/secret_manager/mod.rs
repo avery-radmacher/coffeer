@@ -41,12 +41,7 @@ fn get_path() -> PathBuf {
 }
 
 fn try_get_secret() -> Option<Bet> {
-    let path = get_path();
-    if !path.exists() {
-        return None;
-    }
-
-    Some(io::read_json_file(&path))
+    io::try_read_json_file(&get_path())
 }
 
 fn store_secret(bet: &Bet) {

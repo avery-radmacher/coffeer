@@ -6,6 +6,14 @@ pub fn storage_directory() -> PathBuf {
     PathBuf::from(".\\data")
 }
 
+pub fn try_read_json_file<T: DeserializeOwned>(path: &Path) -> Option<T> {
+    if !path.exists() {
+        None
+    } else {
+        Some(read_json_file(&path))
+    }
+}
+
 pub fn read_json_file<T: DeserializeOwned>(path: &Path) -> T {
     let file = File::open(path).expect("Error opening file");
     let item: T = serde_json::from_reader(file).expect("Error reading file");
