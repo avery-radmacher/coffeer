@@ -1,7 +1,8 @@
 import { fetchJson } from "./fetchUtils.js";
+import { formatMoney } from "./utils.js";
 
 function revealBet(bet) {
-  const amount = `The bet amount was $${(bet.betAmount / 100).toFixed(2)}.`;
+  const amount = `The bet amount was ${formatMoney(bet.betAmount)}.`;
 
   const [overWinner, underWinner] =
     bet.betType === "OneOverTwoUnder"

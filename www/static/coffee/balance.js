@@ -1,14 +1,15 @@
 import { fetchJson, putJson } from "./fetchUtils.js";
+import { formatMoney } from "./utils.js";
 
 export const getBalance = async () => {
   const balance = await fetchJson("/api/balance");
   document.getElementById(
     "currentBalance"
-  ).innerHTML = `Current Balance: ${balance}`;
+  ).innerHTML = `Current Balance: ${formatMoney(balance)}`;
 };
 
-const putBalance = async (balance) => {
-  await putJson("/api/balance", balance);
+const putBalance = async (balanceInDollars) => {
+  await putJson("/api/balance", Math.round(balanceInDollars * 100));
   await getBalance();
 };
 
